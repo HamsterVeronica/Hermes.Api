@@ -1,5 +1,4 @@
-﻿
-using Hermes.Api.Domain.Model;
+﻿using Hermes.Api.Domain.Model;
 
 namespace Hermes.Api.Domain.Contracts.Service
 {

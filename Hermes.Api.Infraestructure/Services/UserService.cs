@@ -1,15 +1,20 @@
-﻿using Hermes.Api.Domain.Model;
-using Hermes.Api.Infraestructure.Repositories;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Hermes.Api.Domain.Contracts.Repositories;
+using Hermes.Api.Domain.Contracts.Service;
+using Hermes.Api.Domain.Model;
 
 namespace Hermes.Api.Infraestructure.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        private readonly UserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IPasswordHashService _passwordHashService;
 
-        public UserService()
+        public UserService(IUserRepository userRepository, IPasswordHashService passwordHashService)
         {
-            _userRepository = new UserRepository();
+            _userRepository = userRepository;
+            _passwordHashService = passwordHashService;
         }
 
         public void SaveUsers(List<User> users)
@@ -31,11 +36,55 @@ namespace Hermes.Api.Infraestructure.Services
                 {
                     Id = i,
                     Name = $"User{i}",
-                    Password = $"Password{i}",
+                    Password = _passwordHashService.HashPassword($"Password{i}"),
                     SecretWord = $"Secret{i}"
                 });
             }
             return users;
+        }
+
+        public User GetUserById(int id)
+        {
+            return _userRepository.LoadUsers().FirstOrDefault(u => u.Id == id);
+        }
+
+        public void CreateUser(User user)
+        {
+            var users = _userRepository.LoadUsers();
+            if (users.Count >= 100)
+            {
+                throw new Exception("User limit reached");
+            }
+
+            user.Id = users.Any() ? users.Max(u => u.Id) + 1 : 1;
+
+            user.Password = _passwordHashService.HashPassword(user.Password);
+            users.Add(user);
+            SaveUsers(users);
+        }
+
+        public void UpdateUser(User user)
+        {
+            var users = _userRepository.LoadUsers();
+            var existingUser = users.FirstOrDefault(u => u.Id == user.Id);
+            if (existingUser != null)
+            {
+                existingUser.Name = user.Name;
+                existingUser.Password = _passwordHashService.HashPassword(user.Password);
+                existingUser.SecretWord = user.SecretWord;
+                SaveUsers(users);
+            }
+        }
+
+        public void DeleteUser(int id)
+        {
+            var users = _userRepository.LoadUsers();
+            var userToDelete = users.FirstOrDefault(u => u.Id == id);
+            if (userToDelete != null)
+            {
+                users.Remove(userToDelete);
+                SaveUsers(users);
+            }
         }
     }
 }

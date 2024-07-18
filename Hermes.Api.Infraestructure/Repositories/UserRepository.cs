@@ -1,9 +1,10 @@
-﻿using Hermes.Api.Domain.Model;
+﻿using Hermes.Api.Domain.Contracts.Repositories;
+using Hermes.Api.Domain.Model;
 using Newtonsoft.Json;
 
 namespace Hermes.Api.Infraestructure.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private const string FilePath = "users.json";
         private const int MaxItems = 100;

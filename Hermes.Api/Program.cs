@@ -1,15 +1,25 @@
+using Hermes.Api.Domain.Contracts.Repositories;
+using Hermes.Api.Domain.Contracts.Service;
+using Hermes.Api.Infraestructure.Repositories;
+using Hermes.Api.Infraestructure.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Services
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPasswordHashService, PasswordHashService>();
 
+// Controllers
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP rpipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

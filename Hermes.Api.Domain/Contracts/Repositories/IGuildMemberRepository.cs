@@ -1,6 +1,4 @@
-﻿
-using Hermes.Api.Domain.Model;
-using System.Xml;
+﻿using Hermes.Api.Domain.Model;
 
 namespace Hermes.Api.Domain.Contracts.Repositories
 {
