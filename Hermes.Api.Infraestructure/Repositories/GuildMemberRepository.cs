@@ -1,6 +1,5 @@
 ﻿using Hermes.Api.Domain.Model;
 using Newtonsoft.Json;
-using System.Xml;
 
 namespace Hermes.Api.Infraestructure.Repositories
 {
