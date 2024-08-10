@@ -6,7 +6,7 @@ namespace Hermes.Api.Infraestructure.Repositories
 {
     public class GuildMemberRepository : IGuildMemberRepository
     {
-        private const string FilePath = "guildMembers.json";
+        private const string FilePath = "../Guild Members/guildMembers.json";
         private const int MaxItems = 100;
 
         public void SaveGuildMembers(List<GuildMember> guildMembers)

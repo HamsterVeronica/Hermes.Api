@@ -5,8 +5,12 @@ using Hermes.Api.Infraestructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Services
+// Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IGuildMemberRepository, GuildMemberRepository>();
+
+// Services
+builder.Services.AddScoped<IGuildMemberService, GuildMemberService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHashService, PasswordHashService>();
 
