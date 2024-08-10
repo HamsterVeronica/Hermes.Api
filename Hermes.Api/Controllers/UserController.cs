@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Hermes.Api.Domain.Contracts.Service;
 using Hermes.Api.Domain.Model;
+using Hermes.Api.Infraestructure.Services;
 
 namespace Hermes.Api.Application.Controllers
 {
@@ -44,6 +45,13 @@ namespace Hermes.Api.Application.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost("batch")]
+        public IActionResult CreateGuildMembers([FromBody] List<User> users)
+        {
+            _userService.CreateUsers(users);
+            return Ok(users);
         }
 
         [HttpPut("{id}")]

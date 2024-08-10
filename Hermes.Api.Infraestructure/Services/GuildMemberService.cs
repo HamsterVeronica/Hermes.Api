@@ -50,7 +50,7 @@ namespace Hermes.Api.Infraestructure.Services
             var members = _guildMemberRepository.LoadGuildMembers();
             if (members.Count >= 100)
             {
-                throw new System.Exception("Member limit reached. Cannot create more members.");
+                throw new System.Exception("Member limit reached");
             }
 
             member.Id = members.Any() ? members.Max(m => m.Id) + 1 : 1;
@@ -63,7 +63,7 @@ namespace Hermes.Api.Infraestructure.Services
             var members = _guildMemberRepository.LoadGuildMembers();
             if (members.Count + newMembers.Count > 100)
             {
-                throw new System.Exception("Member limit reached. Cannot create more members.");
+                throw new System.Exception("Member limit reached");
             }
 
             int nextId = members.Any() ? members.Max(m => m.Id) + 1 : 1;

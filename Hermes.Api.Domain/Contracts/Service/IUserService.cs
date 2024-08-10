@@ -9,6 +9,7 @@ namespace Hermes.Api.Domain.Contracts.Service
         public List<User> GenerateUsers(int count);
         User GetUserById(int id);
         void CreateUser(User user);
+        void CreateUsers(List<User> users);
         void UpdateUser(User user);
         void DeleteUser(int id);
     }

@@ -61,6 +61,23 @@ namespace Hermes.Api.Infraestructure.Services
             SaveUsers(users);
         }
 
+        public void CreateUsers(List<User> newUsers)
+        {
+            var users = _userRepository.LoadUsers();
+            if (users.Count + newUsers.Count > 100)
+            {
+                throw new Exception("Member limit reached");
+            }
+
+            int nextId = users.Any() ? users.Max(m => m.Id) + 1 : 1;
+            foreach (var member in newUsers)
+            {
+                member.Id = nextId++;
+                users.Add(member);
+            }
+            SaveUsers(users);
+        }
+
         public void UpdateUser(User user)
         {
             var users = _userRepository.LoadUsers();
