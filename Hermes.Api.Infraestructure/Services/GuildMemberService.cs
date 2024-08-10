@@ -1,9 +1,10 @@
 ﻿using Hermes.Api.Domain.Contracts.Repositories;
+using Hermes.Api.Domain.Contracts.Service;
 using Hermes.Api.Domain.Model;
 
 namespace Hermes.Api.Infraestructure.Services
 {
-    public class GuildMemberService
+    public class GuildMemberService : IGuildMemberService
     {
         private readonly IGuildMemberRepository _guildMemberRepository;
 

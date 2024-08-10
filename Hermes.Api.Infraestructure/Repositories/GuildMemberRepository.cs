@@ -1,9 +1,10 @@
-﻿using Hermes.Api.Domain.Model;
+﻿using Hermes.Api.Domain.Contracts.Repositories;
+using Hermes.Api.Domain.Model;
 using Newtonsoft.Json;
 
 namespace Hermes.Api.Infraestructure.Repositories
 {
-    public class GuildMemberRepository
+    public class GuildMemberRepository : IGuildMemberRepository
     {
         private const string FilePath = "guildMembers.json";
         private const int MaxItems = 100;

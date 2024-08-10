@@ -4,7 +4,7 @@ using Hermes.Api.Domain.Model;
 
 namespace Hermes.Api.Application.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {

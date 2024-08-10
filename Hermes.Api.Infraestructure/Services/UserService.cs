@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Hermes.Api.Domain.Contracts.Repositories;
+﻿using Hermes.Api.Domain.Contracts.Repositories;
 using Hermes.Api.Domain.Contracts.Service;
 using Hermes.Api.Domain.Model;
 
