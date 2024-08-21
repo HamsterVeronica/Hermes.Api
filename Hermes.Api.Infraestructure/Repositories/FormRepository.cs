@@ -6,7 +6,7 @@ namespace Hermes.Api.Infraestructure.Repositories
 {
     public class FormRepository : IFormRepository
     {
-        private readonly string _filePath = "forms.json";
+        private readonly string _filePath = "../database/forms/forms.json";
 
         public List<RequestForm> LoadForms()
         {

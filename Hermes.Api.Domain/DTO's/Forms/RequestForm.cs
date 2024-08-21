@@ -3,8 +3,8 @@ namespace Hermes.Api.Domain.DTO_s.Forms
 {
     public class RequestForm
     {
-        public string InGameName { get; set; }
-        public string DiscordName { get; set; }
+        public string NameDauntless { get; set; }
+        public string NameDiscord { get; set; }
         public string Devices { get; set; }
         public string Region { get; set; }
         public string CurrentGuild { get; set; }

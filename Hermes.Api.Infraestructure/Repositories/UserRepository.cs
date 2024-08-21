@@ -6,7 +6,7 @@ namespace Hermes.Api.Infraestructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private const string FilePath = "../Users/users.json";
+        private const string FilePath = "../database/users/users.json";
         private const int MaxItems = 100;
 
         public void SaveUsers(List<User> users)
