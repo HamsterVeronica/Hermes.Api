@@ -16,6 +16,15 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHashService, PasswordHashService>();
 builder.Services.AddScoped<IFormService, FormService>();
 
+// CORS Issue
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        policy => policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+});
+
 // Controllers
 builder.Services.AddControllers();
 
@@ -25,7 +34,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP rpipeline
+// Configure the HTTP pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -34,8 +43,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Apply CORS policy
+app.UseCors("AllowSpecificOrigin");
+
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
