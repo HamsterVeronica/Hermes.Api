@@ -15,7 +15,7 @@ namespace Hermes.Api.Application.Controllers
         {
             _userService = userService;
         }
-
+        //
         [HttpGet]
         public ActionResult<List<User>> GetUsers()
         {
