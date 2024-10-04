@@ -5,16 +5,16 @@ using Hermes.Api.Infraestructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Repositories
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IGuildMemberRepository, GuildMemberRepository>();
-builder.Services.AddScoped<IFormRepository, FormRepository>();
-
 // Services
 builder.Services.AddScoped<IGuildMemberService, GuildMemberService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHashService, PasswordHashService>();
 builder.Services.AddScoped<IFormService, FormService>();
+
+// Repositories
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IGuildMemberRepository, GuildMemberRepository>();
+builder.Services.AddScoped<IFormRepository, FormRepository>();
 
 // CORS Issue
 builder.Services.AddCors(options =>
